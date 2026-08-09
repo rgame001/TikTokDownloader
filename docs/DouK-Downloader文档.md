@@ -16,7 +16,8 @@
 </div>
 <br>
 <p>🔥 <b>TikTok 发布/喜欢/合辑/直播/视频/图集/音乐；抖音发布/喜欢/收藏/收藏夹/视频/图集/实况/直播/音乐/合集/评论/账号/搜索/热榜数据采集工具：</b>完全开源，基于 HTTPX 模块实现的免费数据采集和文件下载工具；批量下载抖音账号发布、喜欢、收藏、收藏夹作品；批量下载 TikTok 账号发布、喜欢作品；下载抖音链接或 TikTok 链接作品；获取抖音直播拉流地址；下载抖音直播视频；获取 TikTok 直播拉流地址；下载 TikTok 直播视频；采集抖音作品评论数据；批量下载抖音合集作品；批量下载 TikTok 合辑作品；采集抖音账号详细数据；采集抖音用户 / 作品 / 直播搜索结果；采集抖音热榜数据。</p>
-<p>⭐ <b>项目版本：<code>5.8 Beta</code>；文档更新日期：<code>2026/2/28</code></b></p>
+<p>⚠️ 本项目的加密参数算法已过期失效；为确保项目合法合规，参数算法不再维护，部分功能可能无法正常工作。如需使用，请自行准备加密参数生成代码，配置方法请查阅 <a href="#encipher">加密参数生成代码配置</a>！</p>
+<p>⭐ <b>项目版本：<code>5.8 Beta</code>；文档更新日期：<code>2026/7/4</code></b></p>
 <p>⭐ <b>项目文档正在完善，如果发现任何错误或描述模糊之处，请告知作者以便改进！本项目历史名称：<code>TikTokDownloader</code></b></p>
 <p>⭐ Due to the author’s limited time and energy, the complete English documentation for this project is not yet available. If you wish to read the full documentation, we recommend using AI translation tools to assist your understanding. If you would like to contribute to the translation, your help is warmly welcomed.</p>
 <hr>
@@ -31,9 +32,7 @@
 <li>解压后打开程序文件夹，双击运行 <code>main</code></li>
 </ol>
 <ol><b>配置环境运行</b>
-
-[//]: # (<li>安装不低于 <code>3.12</code> 版本的 <a href="https://www.python.org/">Python</a> 解释器</li>)
-<li>安装 <code>3.12</code> 版本的 <a href="https://www.python.org/">Python</a> 解释器</li>
+<li>安装不低于 <code>3.12</code> 版本的 <a href="https://www.python.org/">Python</a> 解释器</li>
 <li>下载最新的源码或 <a href="https://github.com/JoeanAmier/TikTokDownloader/releases/latest">Releases</a> 发布的源码至本地</li>
 <li>运行 <code>python -m venv venv</code> 命令创建虚拟环境（可选）</li>
 <li>运行 <code>.\venv\Scripts\activate.ps1</code> 或者 <code>venv\Scripts\activate</code> 命令激活虚拟环境（可选）</li>
@@ -43,12 +42,16 @@
 </li>
 <li>阅读 DouK-Downloader 的免责声明，根据提示输入内容</li>
 <li>将 Cookie 信息写入配置文件
-<ol><b>从剪贴板读取 Cookie（推荐）</b>
+<ol><b>手动输入 Cookie</b>
+<li>参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 提取教程</a>，复制所需 Cookie 至剪贴板</li>
+<li>选择 <code>手动输入 Cookie</code> 选项，粘贴 Cookie 内容后按照程序提示操作</li>
+</ol>
+<ol><b>从剪贴板读取 Cookie</b>
 <li>参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 提取教程</a>，复制所需 Cookie 至剪贴板</li>
 <li>选择 <code>从剪贴板读取 Cookie</code> 选项，程序会自动读取剪贴板的 Cookie 并写入配置文件</li>
 </ol>
-<ol><b>从浏览器读取 Cookie</b>
-<li>选择 <code>从浏览器读取 Cookie</code> 选项，按照提示输入浏览器类型或序号</li>
+<ol><b><del>从浏览器读取 Cookie（弃用）</del></b>
+<li><del>选择 <code>从浏览器读取 Cookie</code> 选项，按照提示输入浏览器类型或序号</del></li>
 </ol>
 <ol><b><del>扫码登录获取 Cookie</del>（失效）</b>
 <li><del>选择 <code>扫码登录获取 Cookie</code> 选项，程序会显示登录二维码图片，并使用默认应用打开图片</del></li>
@@ -56,7 +59,7 @@
 <li><del>按照提示操作，程序会自动将 Cookie 写入配置文件</del></li>
 </ol>
 </li>
-<li>返回程序界面，依次选择 <code>终端交互模式</code> -> <code>批量下载链接作品(抖音)</code> -> <code>手动输入待采集的作品链接</code></li>
+<li>返回程序界面，依次选择 <code>终端交互模式</code> -> <code>批量下载链接作品</code> -> <code>手动输入待采集的作品链接</code></li>
 <li>输入抖音作品链接即可下载作品文件</li>
 </ol>
 <p><b>TikTok 平台功能需要额外设置配置文件 <code>browser_info_tiktok</code> 的 <code>device_id</code> 参数，否则 TikTok 平台功能可能无法正常使用！参数获取方式与 Cookie 类似，详见 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 获取教程</a></b></p>
@@ -85,6 +88,80 @@
 <li>Cookie 仅需在失效后重新写入配置文件，并非每次运行程序都要写入配置文件！</li>
 <li><p>Cookie 会影响下载的视频文件分辨率，如果无法下载最高分辨率的视频文件，请尝试更新 Cookie！</li>
 <li>程序获取数据失败时，可以尝试更新 Cookie 或者使用已登录的 Cookie！</li>
+</ul>
+<h1 id="encipher">加密参数生成代码配置</h1>
+<p>此章节涉及加密参数生成代码的编写与调试，需要具备一定的编程基础（如 Python/JavaScript、HTTP 请求调试等），建议有相关经验的用户阅读！</p>
+<p>加密参数生成代码配置是可选的；若项目功能正常，无需额外配置！若功能异常，可能是加密参数无效，此时您需要自行准备加密参数的生成代码！</p>
+<p>加密参数代码模板：</p>
+
+```python
+# import httpx  # 可用于发送 HTTP 请求, Can be used to send HTTP requests
+# import never_jscore  # 可用于执行 JavaScript 代码, Can be used to execute JavaScript code
+
+__all__ = [
+    "ABogus",
+    "XBogus",
+    "XGnarly",
+]
+
+
+class ABogus:
+    """
+    抖音接口加密参数
+    """
+
+    def __init__(self): ...
+
+    def get_value(
+            self,
+            query: dict | str | None = None,
+            data: dict | None = None,
+            method: str | None = None,
+            user_agent: str = "",
+    ) -> str: ...
+
+
+class XBogus:
+    """
+    TikTok 接口加密参数
+    """
+
+    def __init__(self): ...
+
+    def get_x_bogus(
+            self,
+            query: dict | str | None = None,
+            data: dict | None = None,
+            method: str | None = None,
+            user_agent: str = "",
+    ) -> str: ...
+
+
+class XGnarly:
+    """
+    TikTok 接口加密参数
+    """
+
+    def __init__(self): ...
+
+    def generate(
+            self,
+            query: dict | str | None = None,
+            data: dict | None = None,
+            method: str | None = None,
+            user_agent: str = "",
+    ) -> str: ...
+```
+
+<ul>
+<li>加密参数代码文件固定命名：<code>encipher.py</code></li>
+<li>通过源码运行时，加密参数代码文件放置在项目根目录</li>
+<li>通过可执行文件运行时，加密参数代码文件放置在 <code>_internal</code> 目录下</li>
+<li>加密参数代码支持调用 <code>httpx</code>、<code>never_jscore</code> 库及 Python 标准库</li>
+<li>每个加密参数类需实现一个用于生成加密结果的方法（参考模板中的方法签名）</li>
+<li>模板中的加密参数类无需全部实现，可根据实际需求删除不需要的类</li>
+<li>可以通过执行自定义的 JavaScript 代码生成加密参数</li>
+<li>可以通过调用 API 获取加密参数结果，适合已有参数生成服务的情况</li>
 </ul>
 <h1>入门说明</h1>
 <h2>关于终端</h2>
@@ -753,13 +830,18 @@ built with gcc 14.2.0 (crosstool-NG 1.27.0.18_7458341)
 <li>设置服务器模式参数验证</li>
 </ul>
 <h1>功能介绍</h1>
+<h2>手动输入 Cookie</h2>
+<p>参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 提取教程</a>，手动从浏览器复制所需 Cookie 内容并粘贴至程序，按照程序提示操作；程序会将有效的 Cookie 写入配置文件。</p>
+<p>成功写入配置文件后，程序会提示当前 Cookie 登录状态！</p>
+<p>如果 Cookie 内容过长，部分终端可能会在输入时截断内容。建议更换支持长输入的终端，或改用 <code>从剪贴板读取 Cookie</code> 功能。</p>
 <h2>从剪贴板读取 Cookie</h2>
-<p>参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 提取教程</a>，手动从浏览器复制所需 Cookie 内容至剪贴板，再按照程序提示操作；程序会自动读取剪贴板的内容并将有效的 Cookie 写入配置文件。</p>
+<p>参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/blob/master/docs/Cookie%E8%8E%B7%E5%8F%96%E6%95%99%E7%A8%8B.md">Cookie 提取教程</a>，手动从浏览器复制所需 Cookie 内容至剪贴板，按照程序提示操作；程序会自动读取剪贴板的内容并将有效的 Cookie 写入配置文件。</p>
 <p>成功写入配置文件后，程序会提示当前 Cookie 登录状态！</p>
-<h2>从浏览器读取 Cookie</h2>
-<p>自动读取本地浏览器的 Cookie 数据，并提取所需 Cookie 写入配置文件。</p>
-<p>成功写入配置文件后，程序会提示当前 Cookie 登录状态！</p>
-<p>Windows 系统需要以管理员身份运行程序才能读取 Chromium、Chrome、Edge 浏览器 Cookie！</p>
+<p>此功能在 Docker 容器环境不可用！</p>
+<h2><del>从浏览器读取 Cookie</del></h2>
+<p><del>自动读取本地浏览器的 Cookie 数据，并提取所需 Cookie 写入配置文件。</del></p>
+<p><del>成功写入配置文件后，程序会提示当前 Cookie 登录状态！</del></p>
+<p><del>Windows 系统需要以管理员身份运行程序才能读取 Chromium、Chrome、Edge 浏览器 Cookie！</del></p>
 <p><strong>兼容性提醒：此功能依赖的第三方模块已长期未更新，可能无法正常支持最新浏览器版本。若功能出现异常，请尝试手动获取 Cookie！</strong></p>
 <h2><del>扫码登录获取 Cookie</del></h2>
 <p><del>程序自动获取抖音登录二维码，随后会在终端输出二维码，并使用系统默认图片浏览器打开二维码图片，使用者通过抖音 APP 扫码并登录账号，操作后关闭二维码图片窗口，程序会自动检查登录结果并将登录后的 Cookie 写入配置文件。</del></p>
@@ -1280,6 +1362,8 @@ A:
 A: 由于权限限制，您无法直接触发主仓库的 Actions。请通过 Fork 仓库的方式执行打包流程
 
 <h1>常见问题与解决方案</h1>
+<h2>Windows 系统运行已编译的程序发生闪退</h2>
+<p>已编译的程序发生异常报错，参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/issues/127">issue</a> 获取异常报错信息，向作者反馈问题！</p>
 <h2>响应内容不是有效的 JSON 数据</h2>
 <p>可能是 Cookie 无效或者接口失效；请尝试清除 DNS 缓存，更新 Cookie，如果仍然无法解决，可能是接口失效，请考虑向作者反馈！</p>
 <h2 id="twc">获取 ttwid 参数失败</h2>
@@ -1303,6 +1387,8 @@ A: 由于权限限制，您无法直接触发主仓库的 Actions。请通过 Fo
 <p>网络异常；如果您的网络需要使用代理才能访问 TikTok，请在配置文件设置 <code>proxy</code> 参数！</p>
 <h2>self 获取账号信息失败</h2>
 <p>请把配置文件的 <code>owner_url</code> 参数修改为实际的抖音主页链接，获取方式请查阅 <a href="https://github.com/JoeanAmier/TikTokDownloader/issues/416">issue</a></p>
+<h2>下载抖音账号作品时无法获取最新发布作品或者作品数量不全</h2>
+<p>登录状态和未登录状态下的作品数据获取结果不同，参考 <a href="https://github.com/JoeanAmier/TikTokDownloader/issues/145">issue</a></p>
 <h1>免责声明</h1>
 <ol>
 <li>使用者对本项目的使用由使用者自行决定，并自行承担风险。作者对使用者使用本项目所产生的任何损失、责任、或风险概不负责。</li>
