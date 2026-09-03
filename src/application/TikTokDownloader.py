@@ -2,7 +2,8 @@ from asyncio import CancelledError, run
 from threading import Event, Thread
 from time import sleep
 
-from httpx import RequestError, get
+from curl_cffi.requests import get
+from curl_cffi.requests.exceptions import RequestException
 
 from src.config import Parameter, Settings
 from src.custom import (
@@ -12,7 +13,6 @@ from src.custom import (
     LICENCE,
     MASTER,
     PROJECT_NAME,
-    PROJECT_ROOT,
     RELEASES,
     REPOSITORY,
     SERVER_HOST,
@@ -21,6 +21,7 @@ from src.custom import (
     VERSION_BETA,
     VERSION_MAJOR,
     VERSION_MINOR,
+    VOLUME,
 )
 from src.manager import Database, DownloadRecorder
 from src.module import Cookie, MigrateFolder
@@ -63,7 +64,7 @@ class TikTokDownloader:
         )
         self.logger = None
         self.recorder = None
-        self.settings = Settings(PROJECT_ROOT, self.console)
+        self.settings = Settings(VOLUME, self.console)
         self.event_cookie = Event()
         self.cookie = Cookie(self.settings, self.console)
         self.params_task = None
@@ -240,7 +241,7 @@ class TikTokDownloader:
             response = get(
                 RELEASES,
                 timeout=5,
-                follow_redirects=True,
+                allow_redirects=True,
             )
             latest_major, latest_minor = map(
                 int, str(response.url).split("/")[-1].split(".", 1)
@@ -265,7 +266,7 @@ class TikTokDownloader:
                 self.console.info(
                     _("当前已是最新正式版"),
                 )
-        except RequestError:
+        except RequestException:
             self.console.error(
                 _("检测新版本失败"),
             )
