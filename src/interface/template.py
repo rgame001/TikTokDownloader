@@ -11,7 +11,13 @@ from rich.progress import (
 )
 
 from ..custom import PROGRESS, wait
-from ..tools import DownloaderError, FakeProgress, Retry, capture_error_request
+from ..tools import (
+    DownloaderError,
+    FakeProgress,
+    Retry,
+    capture_error_request,
+    cookie_str_to_dict,
+)
 from ..translation import _
 
 if TYPE_CHECKING:
@@ -94,6 +100,16 @@ class API:
     def set_temp_cookie(self, cookie: str = ""):
         if cookie:
             self.headers["Cookie"] = cookie
+            uifid = next(
+                (
+                    value
+                    for key, value in cookie_str_to_dict(cookie).items()
+                    if key.lower() == "uifid"
+                ),
+                "",
+            )
+            if uifid:
+                self.headers["uifid"] = uifid
 
     def generate_params(
         self,
@@ -259,6 +275,7 @@ class API:
         **kwargs,
     ):
         params = self.deal_url_params(
+            url,
             params,
             data,
             method,
@@ -430,6 +447,7 @@ class API:
 
     def deal_url_params(
         self,
+        url: str,
         params: dict,
         data: dict | None = None,
         method="GET",
@@ -439,10 +457,9 @@ class API:
             params = urlencode(
                 params,
                 safe="=",
-                quote_via=quote,
             )
             params = self.douyin_params.sign_url(
-                "", params, data, method, user_agent=self.user_agent
+                url, params, data, method, user_agent=self.user_agent
             )
             return params
         return ""
@@ -580,6 +597,7 @@ class APITikTok(API):
 
     def deal_url_params(
         self,
+        url: str,
         params: dict,
         data: dict | None = None,
         method="GET",
@@ -592,7 +610,7 @@ class APITikTok(API):
                 quote_via=quote,
             )
             params = self.tiktok_params.sign_url(
-                "",
+                url,
                 params,
                 data,
                 method,
